@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+    reverseproxy:
+        build: ./server
+        image: nginx_reverseproxy
+        restart: always
+        container_name: reverseproxy
+        ports:
+            - 8080:8080
+            - 443:443
+        networks:
+            - application
+
+    nodejs:
+        build: ./app
+        image: nodejs_application
+        container_name: nodejs
+        volumes: 
+            - ./:/usr/src/app
+        networks:
+            - application
+
+networks:
+    application:
