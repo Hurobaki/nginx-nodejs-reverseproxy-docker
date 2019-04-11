@@ -22,5 +22,15 @@ services:
         networks:
             - application
 
+    react:
+        build: ./react
+        container_name: react
+        ports:
+            - 80:80
+        volumes:
+            - ./test-app/build:/usr/share/nginx/html
+        networks:
+            - application
+
 networks:
     application:
